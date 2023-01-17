@@ -6,6 +6,7 @@
     include_once "./client/src/captcha/RecaptchaV3.php";
     include_once "./client/src/captcha/ImageToText.php";
     include_once "./client/src/captcha/GeeTest.php";
+    include_once "./client/src/captcha/Turnstile.php";
 
     require_once __DIR__ . '/../../vendor/autoload.php';
 
@@ -141,6 +142,24 @@
                 $solution->setMessage(json_encode($solution->message));
             }
             $this->assertFalse($solution->result, $solution->message);
+        }
+
+        public function testTurnstileSolve() {
+            global $clientKey;
+
+            $client = new Client($clientKey);
+            
+            $captchaOptions = [
+                "websiteURL" => "https://tsinvisble.zlsupport.com",
+		        "websiteKey" => "0x4AAAAAAABUY0VLtOUMAHxE"
+            ];
+            $request = new TurnstileRequest($captchaOptions["websiteURL"], $captchaOptions["websiteKey"]);
+
+            $solution = $client->solve($request);
+            if(gettype($solution->message) == 'array') {
+                $solution->setMessage(json_encode($solution->message));
+            }
+            $this->assertTrue($solution->result, $solution->message);
         }
 
     }

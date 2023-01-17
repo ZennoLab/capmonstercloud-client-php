@@ -12,10 +12,12 @@
                 case "RecaptchaV3TaskProxyless":
                 case "RecaptchaV2EnterpriseTaskProxyless":
                 case "NoCaptchaTaskProxyless":
+                case "TurnstileTaskProxyless":
                     return ["websiteURL", "websiteKey"];
                 case "HCaptchaTask":
                 case "RecaptchaV2EnterpriseTask":
                 case "NoCaptchaTask":
+                case "TurnstileTask":
                     return ["websiteURL", "websiteKey", "proxyType", "proxyAddress", "proxyPort"];
                 case "FunCaptchaTask":
                     return ["websiteURL", "websitePublicKey", "proxyType", "proxyAddress", "proxyPort", "userAgent"];

@@ -44,3 +44,5 @@
 - RecaptchaV3TaskProxyless
 - RecaptchaV2EnterpriseTask
 - RecaptchaV2EnterpriseTaskProxyless
+- TurnstileTask
+- TurnstileTaskProxyless

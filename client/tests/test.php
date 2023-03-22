@@ -15,7 +15,6 @@
     use PHPUnit\Framework\TestCase;
 
     $clientKey = getenv('CLIENT_KEY');
-    $clientKey = 'f9dbccccad15946867313c3789d8b4d7';
 
     class Test extends TestCase {
 

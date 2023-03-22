@@ -50,6 +50,12 @@ class Timeouts {
         "timeout" => 1000 * 80
     ];
 
+    public static $complexImageTimeouts = [
+        "firstRequestDelay" => 1000 * 1,
+        "requestInterval" => 1000 * 1,
+        "timeout" => 1000 * 80
+    ];
+
     public static function detectTimeouts(string $captchaType) : array {
         switch($captchaType) {
             case "FunCaptchaTaskProxyless":
@@ -74,6 +80,8 @@ class Timeouts {
             case "TurnstileTask":
             case "TurnstileTaskProxyless":
                 return self::$turnstileTimeouts;
+            case "ComplexImageTask":
+                return self::$complexImageTimeouts;
         }
     }
 

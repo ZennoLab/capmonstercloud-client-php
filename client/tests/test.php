@@ -7,12 +7,15 @@
     include_once "./client/src/captcha/ImageToText.php";
     include_once "./client/src/captcha/GeeTest.php";
     include_once "./client/src/captcha/Turnstile.php";
+    include_once "./client/src/captcha/ComplexImageHCaptcha.php";
+    include_once "./client/src/captcha/ComplexImageRecaptcha.php";
 
     require_once __DIR__ . '/../../vendor/autoload.php';
 
     use PHPUnit\Framework\TestCase;
 
     $clientKey = getenv('CLIENT_KEY');
+    $clientKey = 'f9dbccccad15946867313c3789d8b4d7';
 
     class Test extends TestCase {
 
@@ -154,6 +157,53 @@
 		        "websiteKey" => "0x4AAAAAAABUY0VLtOUMAHxE"
             ];
             $request = new TurnstileRequest($captchaOptions["websiteURL"], $captchaOptions["websiteKey"]);
+
+            $solution = $client->solve($request);
+            if(gettype($solution->message) == 'array') {
+                $solution->setMessage(json_encode($solution->message));
+            }
+            $this->assertTrue($solution->result, $solution->message);
+        }
+
+        public function testComplexImageHCaptchaSolve()
+        {
+            global $clientKey;
+
+            $client = new Client($clientKey);
+
+            $captchaOptions = [
+                "imageUrls" => [
+                    "https://i.postimg.cc/yYjg75Kv/payloadtraffic.jpg"
+                ],
+                "metadata" => [
+                    "Task" => "Please click each image containing a mountain"
+                ],
+            ];
+            $request = new ComplexImageHCaptchaRequest($captchaOptions['metadata'], $captchaOptions['imageUrls']);
+
+            $solution = $client->solve($request);
+            if(gettype($solution->message) == 'array') {
+                $solution->setMessage(json_encode($solution->message));
+            }
+            $this->assertTrue($solution->result, $solution->message);
+        }
+
+        public function textComplexImageRecaptchaSolve()
+        {
+            global $clientKey;
+
+            $client = new Client($clientKey);
+
+            $captchaOptions = [
+                "imageUrls" => [
+                    "https://i.postimg.cc/yYjg75Kv/payloadtraffic.jpg"
+                ],
+                "metadata" => [
+                    "Task" => "Please click each image containing a mountain",
+                    "Grid" => "3x3"
+                ],
+            ];
+            $request = new ComplexImageRecaptchaRequest($captchaOptions['metadata'], $captchaOptions['imageUrls']);
 
             $solution = $client->solve($request);
             if(gettype($solution->message) == 'array') {

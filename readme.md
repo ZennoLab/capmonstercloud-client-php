@@ -46,3 +46,5 @@
 - RecaptchaV2EnterpriseTaskProxyless
 - TurnstileTask
 - TurnstileTaskProxyless
+- ComplexImageRecaptcha
+- ComplexImageHCaptcha

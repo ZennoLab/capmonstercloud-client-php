@@ -27,6 +27,8 @@
                     return ["websiteURL", "gt", "challenge", "proxyType", "proxyAddress", "proxyPort"];
                 case "GeeTestTaskProxyless":
                     return ["websiteURL", "gt", "challenge"];
+                case "ComplexImageTask":
+                    return ["class", "metadata"];
             }
         }
 

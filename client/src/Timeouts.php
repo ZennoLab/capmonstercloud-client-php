@@ -51,9 +51,9 @@ class Timeouts {
     ];
 
     public static $complexImageTimeouts = [
-        "firstRequestDelay" => 1000 * 1,
-        "requestInterval" => 1000 * 1,
-        "timeout" => 1000 * 80
+        "firstRequestDelay" => 350,
+        "requestInterval" => 200,
+        "timeout" => 1000 * 10
     ];
 
     public static function detectTimeouts(string $captchaType) : array {

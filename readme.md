@@ -48,3 +48,4 @@
 - TurnstileTaskProxyless
 - ComplexImageRecaptcha
 - ComplexImageHCaptcha
+- ComplexImageFuncaptcha

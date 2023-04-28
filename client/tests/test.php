@@ -9,6 +9,7 @@
     include_once "./client/src/captcha/Turnstile.php";
     include_once "./client/src/captcha/ComplexImageHCaptcha.php";
     include_once "./client/src/captcha/ComplexImageRecaptcha.php";
+    include_once "./client/src/captcha/ComplexImageFuncaptcha.php";
 
     require_once __DIR__ . '/../../vendor/autoload.php';
 
@@ -172,7 +173,7 @@
 
             $captchaOptions = [
                 "imageUrls" => [
-                    "https://i.postimg.cc/yYjg75Kv/payloadtraffic.jpg"
+                    "https://i.postimg.cc/kg71cbRt/image-1.jpg"
                 ],
                 "metadata" => [
                     "Task" => "Please click each image containing a mountain"
@@ -195,14 +196,13 @@
 
             $captchaOptions = [
                 "imageUrls" => [
-                    "https://i.postimg.cc/yYjg75Kv/payloadtraffic.jpg"
+                    "https://i.postimg.cc/s2ZDrHXy/fc1.jpg"
                 ],
                 "metadata" => [
-                    "Task" => "Please click each image containing a mountain",
-                    "Grid" => "3x3"
+                    "Task" => "Pick the image that is the correct way up"
                 ],
             ];
-            $request = new ComplexImageRecaptchaRequest($captchaOptions['metadata'], $captchaOptions['imageUrls']);
+            $request = new ComplexImageFuncaptchaRequest($captchaOptions['metadata'], $captchaOptions['imageUrls']);
 
             $solution = $client->solve($request);
             if(gettype($solution->message) == 'array') {

@@ -2,28 +2,26 @@
 
 #### Usage
 ```php
-    include './client/Client.php';
-    include './client/src/captcha/ImageToText.php';
-    include './client/src/captcha/RecaptchaV2.php';
-    include './client/src/captcha/HCaptcha.php';
-    
-    $client = new Client("your_client_key");
+    namespace ZennoLab\CapMonster; 
+
+    require __DIR__.'/vendor/autoload.php'   
+    $client = new Client(iget_env("your_client_key"));
 
     //solve image captcha
     $body = "base64_captcha_image";
-    $imageRequest = new ImageToTextRequest($body);
+    $imageRequest = new captcha\ImageToTextRequest($body);
     $imageResult = $client->solve($imageRequest);
     
     //solve Recaptcha 2 (without proxy)
     $websiteURL = "https://lessons.zennolab.com/captchas/recaptcha/v2_simple.php?level=high";
     $websiteKey = "6Lcg7CMUAAAAANphynKgn9YAgA4tQ2KI_iqRyTwd";
-    $recaptchaV2Request = new RecaptchaV2Request($websiteURL, $websiteKey);
+    $recaptchaV2Request = new captcha\RecaptchaV2Request($websiteURL, $websiteKey);
     $recaptchaV2Result = $client->solve($recaptchaV2Request);
     
     // solve HCaptcha (without proxy)
     $websiteUrl = "https://lessons.zennolab.com/captchas/hcaptcha/?level=easy";
     $websiteKey = "472fc7af-86a4-4382-9a49-ca9090474471";
-    $hcatpchaRequest = new HCaptchaRequest($websiteURL, $websiteKey);
+    $hcatpchaRequest = new captcha\HCaptchaRequest($websiteURL, $websiteKey);
     $hcaptchaResult = $client->solve($hcatpchaRequest);
 ```
 

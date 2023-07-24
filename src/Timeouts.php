@@ -1,4 +1,5 @@
 <?php
+namespace ZennoLab\CapMonster; 
 
 class Timeouts {
 

@@ -1,9 +1,5 @@
 <?php
-
-include_once './client/src/Networker.php';
-include_once './client/src/CaptchaRequest.php';
-include_once './client/src/Result.php';
-include_once './client/src/Timeouts.php';
+namespace ZennoLab\CapMonster; 
 
 class Client extends Networker {
 

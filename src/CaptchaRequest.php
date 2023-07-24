@@ -1,8 +1,5 @@
 <?php
-
-include_once './client/src/Networker.php';
-include_once './client/src/Result.php';
-include_once './client/src/Validator.php';
+namespace ZennoLab\CapMonster; 
 
 class CaptchaRequest extends Networker {
 
@@ -103,14 +100,14 @@ class CaptchaRequest extends Networker {
             $response = $this->postRequest($url, $this->options, $this->userAgent); 
         } catch (Exception $e) {
             $message = $this->tryParseCreateTaskError($e->getMessage());
-            throw new Exception($message);
+            throw new \Exception($message);
         }
 
         $jsonResponse = json_decode($response, true);
         
         if($jsonResponse['errorId'] == 1) {
             $message = $jsonResponse['errorDescription'];
-            throw new Exception($message);
+            throw new \Exception($message);
         }
 
         $this->taskId = $jsonResponse['taskId'];        
@@ -130,7 +127,7 @@ class CaptchaRequest extends Networker {
             $response = $this->postRequestIgnore503($url, $payload, $this->userAgent); 
         } catch (Exception $e) {
             $message = $this->tryParseGetResultError($e->getMessage());
-            throw new Exception($message);
+            throw new \Exception($message);
         }
 
         $jsonResponse = json_decode($response, true);
@@ -141,7 +138,7 @@ class CaptchaRequest extends Networker {
         
         if($jsonResponse['errorId'] == 1) {
             $message = $jsonResponse['errorCode'];
-            throw new Exception($message);
+            throw new \Exception($message);
         }
 
         if($jsonResponse['status'] == 'ready') {

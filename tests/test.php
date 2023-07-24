@@ -1,17 +1,7 @@
 <?php
+namespace ZennoLab\CapMonster; 
 
-    include_once "./client/Client.php";
-    include_once "./client/src/captcha/RecaptchaV2.php";
-    include_once "./client/src/captcha/HCaptcha.php";
-    include_once "./client/src/captcha/RecaptchaV3.php";
-    include_once "./client/src/captcha/ImageToText.php";
-    include_once "./client/src/captcha/GeeTest.php";
-    include_once "./client/src/captcha/Turnstile.php";
-    include_once "./client/src/captcha/ComplexImageHCaptcha.php";
-    include_once "./client/src/captcha/ComplexImageRecaptcha.php";
-    include_once "./client/src/captcha/ComplexImageFuncaptcha.php";
-
-    require_once __DIR__ . '/../../vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
     use PHPUnit\Framework\TestCase;
 
@@ -28,7 +18,7 @@
                 "websiteURL" => "https://lessons.zennolab.com/captchas/recaptcha/v2_simple.php?level=high",
 		        "websiteKey" => "6Lcg7CMUAAAAANphynKgn9YAgA4tQ2KI_iqRyTwd"
             ];
-            $request = new RecaptchaV2Request($captchaOptions["websiteURL"], $captchaOptions["websiteKey"]);
+            $request = new captcha\RecaptchaV2Request($captchaOptions["websiteURL"], $captchaOptions["websiteKey"]);
 
             $solution = $client->solve($request);
             if(gettype($solution->message) == 'array') {
@@ -46,7 +36,7 @@
                 "websiteURL" => "https://lessons.zennolab.com/captchas/hcaptcha/?level=easy",
 		        "websiteKey" => "472fc7af-86a4-4382-9a49-ca9090474471"
             ];
-            $request = new HCaptchaRequest($captchaOptions["websiteURL"], $captchaOptions["websiteKey"]);
+            $request = new captcha\HCaptchaRequest($captchaOptions["websiteURL"], $captchaOptions["websiteKey"]);
 
             $solution = $client->solve($request);
             if(gettype($solution->message) == 'array') {
@@ -64,7 +54,7 @@
                 "websiteURL" => "incorrect website",
 		        "websiteKey" => "6Lcg7CMUAAAAANphynKgn9YAgA4tQ2KI_iqRyTwd"
             ];
-            $request = new HCaptchaRequest($captchaOptions["websiteURL"], $captchaOptions["websiteKey"]);
+            $request = new captcha\HCaptchaRequest($captchaOptions["websiteURL"], $captchaOptions["websiteKey"]);
 
             $solution = $client->solve($request);
             if(gettype($solution->message) == 'array') {
@@ -83,7 +73,7 @@
 		        "websiteKey" => "6Lcg7CMUAAAAANphynKgn9YAgA4tQ2KI_iqRyTwd",
                 "minScore" => 1.1
             ];
-            $request = new RecaptchaV3Request($captchaOptions["websiteURL"], $captchaOptions["websiteKey"], $captchaOptions["minScore"]);
+            $request = new captcha\RecaptchaV3Request($captchaOptions["websiteURL"], $captchaOptions["websiteKey"], $captchaOptions["minScore"]);
 
             $solution = $client->solve($request);
             if(gettype($solution->message) == 'array') {
@@ -101,7 +91,7 @@
                 "body" => "body",
                 "recognizingThreshold" => 101
             ];
-            $request = new ImageToTextRequest($captchaOptions['body'], null, $captchaOptions["recognizingThreshold"]);
+            $request = new captcha\ImageToTextRequest($captchaOptions['body'], null, $captchaOptions["recognizingThreshold"]);
 
             $solution = $client->solve($request);
             if(gettype($solution->message) == 'array') {
@@ -119,7 +109,7 @@
                 "websiteURL" => "https://lessons.zennolab.com/captchas/recaptcha/v2_simple.php?level=high",
 		        "websiteKey" => ""
             ];
-            $request = new RecaptchaV2Request($captchaOptions["websiteURL"], $captchaOptions["websiteKey"]);
+            $request = new captcha\RecaptchaV2Request($captchaOptions["websiteURL"], $captchaOptions["websiteKey"]);
 
             $solution = $client->solve($request);
             if(gettype($solution->message) == 'array') {
@@ -138,7 +128,7 @@
 		        "gt" => "",
                 "challenge" => ""
             ];
-            $request = new GeeTestRequest($captchaOptions["websiteURL"], $captchaOptions["gt"], $captchaOptions["challenge"]);
+            $request = new captcha\GeeTestRequest($captchaOptions["websiteURL"], $captchaOptions["gt"], $captchaOptions["challenge"]);
 
             $solution = $client->solve($request);
             if(gettype($solution->message) == 'array') {
@@ -156,7 +146,7 @@
                 "websiteURL" => "https://tsinvisble.zlsupport.com",
 		        "websiteKey" => "0x4AAAAAAABUY0VLtOUMAHxE"
             ];
-            $request = new TurnstileRequest($captchaOptions["websiteURL"], $captchaOptions["websiteKey"]);
+            $request = new captcha\TurnstileRequest($captchaOptions["websiteURL"], $captchaOptions["websiteKey"]);
 
             $solution = $client->solve($request);
             if(gettype($solution->message) == 'array') {
@@ -179,7 +169,7 @@
                     "Task" => "Please click each image containing a mountain"
                 ],
             ];
-            $request = new ComplexImageHCaptchaRequest($captchaOptions['metadata'], $captchaOptions['imageUrls']);
+            $request = new captcha\ComplexImageHCaptchaRequest($captchaOptions['metadata'], $captchaOptions['imageUrls']);
 
             $solution = $client->solve($request);
             if(gettype($solution->message) == 'array') {
@@ -202,7 +192,7 @@
                     "Task" => "Pick the image that is the correct way up"
                 ],
             ];
-            $request = new ComplexImageFuncaptchaRequest($captchaOptions['metadata'], $captchaOptions['imageUrls']);
+            $request = new captcha\ComplexImageFuncaptchaRequest($captchaOptions['metadata'], $captchaOptions['imageUrls']);
 
             $solution = $client->solve($request);
             if(gettype($solution->message) == 'array') {

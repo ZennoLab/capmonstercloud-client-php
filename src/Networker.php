@@ -1,12 +1,11 @@
 <?php
-
-include_once "./client/src/Result.php";
+namespace ZennoLab\CapMonster; 
 
 class Networker {
 
     protected function postRequest(string $url, array $payload, string $userAgent, array $ignoredHttpCodes = []) : string {
         $jsonPayload = json_encode($payload);
-
+        print_r($payload);
         $ch = curl_init($url);
 
         curl_setopt_array($ch, array(
@@ -22,12 +21,12 @@ class Networker {
 
         if ($curlErrorNumber = curl_errno($ch)) {
             curl_close($ch);
-            throw new Exception(curl_strerror($curlErrorNumber));
+            throw new \Exception(curl_strerror($curlErrorNumber));
         }
         curl_close($ch);
 
         if($this->isErrorCode($httpCode) && !in_array($httpCode, $ignoredHttpCodes)) { 
-            throw new Exception($response);
+            throw new \Exception($response);
         }
 
         return $response;

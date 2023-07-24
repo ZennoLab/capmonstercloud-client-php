@@ -1,6 +1,9 @@
 <?php
+namespace ZennoLab\CapMonster\captcha; 
 
-include_once './client/src/CaptchaRequest.php';
+use \ZennoLab\CapMonster\Result;
+use \ZennoLab\CapMonster\CaptchaRequest;
+
 
 class ComplexImageFuncaptchaRequest extends ComplexImageRequest
 {

@@ -1,7 +1,6 @@
 <?php
-
-include_once './client/src/CaptchaRequest.php';
-
+namespace ZennoLab\CapMonster\captcha;
+use \ZennoLab\CapMonster\CaptchaRequest;
 
 class TurnstileRequest extends CaptchaRequest {
 

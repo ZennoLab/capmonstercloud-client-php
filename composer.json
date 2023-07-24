@@ -1,4 +1,17 @@
 {
+    "autoload": {
+        "psr-4": {
+            "ZennoLab\\CapMonster\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Ivo Nascimento",
+            "email": "iannsp@gmail.com",
+            "homepage": "https://ivonascimento.wordpress.com",
+            "role":"contributor developer"
+        }
+    ],
     "name": "zennolab/capmonstercloud.client",
     "description": "API client for capmonster.cloud",
     "require": {

@@ -24,9 +24,9 @@
                 case "FunCaptchaTaskProxyless":
                     return ["websiteURL", "websitePublicKey"];
                 case "GeeTestTask":
-                    return ["websiteURL", "gt", "challenge", "proxyType", "proxyAddress", "proxyPort"];
+                    return ["websiteURL", "gt", "proxyType", "proxyAddress", "proxyPort"];
                 case "GeeTestTaskProxyless":
-                    return ["websiteURL", "gt", "challenge"];
+                    return ["websiteURL", "gt"];
                 case "ComplexImageTask":
                     return ["class", "metadata"];
             }

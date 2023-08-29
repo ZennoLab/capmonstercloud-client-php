@@ -147,6 +147,38 @@
             $this->assertFalse($solution->result, $solution->message);
         }
 
+        public function testGeeTesV4() {
+            global $clientKey;
+
+            $client = new Client($clientKey);
+
+            $captchaOptions = [
+                "websiteURL" => "https://faucetpay.io/account/login",
+                "gt" => "eb8b0c2b27f3365b9244d9da81638c6",
+                "version" => "4",
+                "initParameters" => [
+                    "riskType" => "slide"
+                ],
+                "userAgent" => "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36"
+            ];
+            $request = new GeeTestRequest(
+                $captchaOptions["websiteURL"],
+                $captchaOptions["gt"],
+                null,
+                null,
+                null,
+                $captchaOptions["version"],
+                $captchaOptions["initParameters"],
+                $captchaOptions["userAgent"]
+            );
+
+            $solution = $client->solve($request);
+            if(gettype($solution->message) == 'array') {
+                $solution->setMessage(json_encode($solution->message));
+            }
+            $this->assertTrue($solution->result, $solution->message);
+        }
+
         public function testTurnstileSolve() {
             global $clientKey;
 
